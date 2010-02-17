@@ -15,3 +15,4 @@ Credits
 -------
 
    * patch from Jean Jordaan for correct setup of colors
+   * patch from Antti Kaihola for nose compatibility

@@ -19,6 +19,10 @@ setup(name='ipdb',
           # -*- Extra requirements: -*-
           'ipython',
       ],
+      extras_require={
+          # -*- Requirements for nose compatibility: -*-
+          'nosetests': ['nose'],
+      },
       entry_points="""
       # -*- Entry points: -*-
       """,
