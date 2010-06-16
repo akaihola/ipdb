@@ -1,9 +1,35 @@
+import os
+import pprint
 import sys
-from IPython.Debugger import Pdb
+import traceback
+from IPython.Debugger import Pdb as _Pdb
 from IPython.Shell import IPShell
 from IPython import ipapi
 
 shell = IPShell(argv=[''])
+
+class Pdb(_Pdb):
+    
+    watched_vars = []
+    
+    def postcmd(self, stop, line):
+        locals = self.curframe.f_locals
+        if any(var in locals for var in self.watched_vars):
+            print 'watched vars:'
+            pprint.pprint(dict([(k,v) for k,v in locals.items() if k in self.watched_vars]))
+        return stop
+
+    def do_watch(self, var):
+        self.watched_vars.append(var)
+        print 'now watching "%s"' % var
+
+    def do_unwatch(self, var):
+        self.watched_vars.remove(var)
+        print 'stopped watching "%s"' % var
+
+class Restart(Exception):
+    """Causes a debugger to be restarted for the debugged python program."""
+    pass
 
 def set_trace():
     try:
