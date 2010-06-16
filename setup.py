@@ -16,14 +16,14 @@ setup(name='ipdb',
       include_package_data=True,
       zip_safe=True,
       install_requires=[
-          # -*- Extra requirements: -*-
-          'ipython',
+        # -*- Extra requirements: -*-
+        'ipython',
       ],
       extras_require={
-          # -*- Requirements for nose compatibility: -*-
-          'nosetests': ['nose'],
+        # -*- Requirements for nose compatibility: -*-
+        'nosetests': ['nose'],
       },
-      entry_points="""
-      # -*- Entry points: -*-
-      """,
-      )
+      entry_points={
+        'console_scripts': ['ipdb = ipdb:main']
+      },
+)
