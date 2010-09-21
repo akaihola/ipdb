@@ -1,3 +1,4 @@
+import sys
 import os
 import pprint
 import sys
@@ -26,6 +27,12 @@ class Pdb(_Pdb):
     def do_unwatch(self, var):
         self.watched_vars.remove(var)
         print 'stopped watching "%s"' % var
+
+    def do_q(self, *args):
+        sys.exit()
+
+    def do_quit(self, *args):
+        sys.exit()
 
 class Restart(Exception):
     """Causes a debugger to be restarted for the debugged python program."""
