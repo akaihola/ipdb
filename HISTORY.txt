@@ -4,7 +4,9 @@ Changelog
 0.6 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Fixed terminal output inside nose test cases for both IPython
+  <0.10.2 and IPython >=0.10.2
+  [akaihola]
 
 
 0.5 (2011-08-05)

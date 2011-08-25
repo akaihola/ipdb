@@ -32,6 +32,19 @@ else:
     def_colors = ip.options.colors
                 
 def set_trace(frame=None):
+    try:
+        import nose.core
+        from traceback import extract_stack
+        nose_core_path = nose.core.__file__.rstrip('c')
+        if nose_core_path in (entry[0] for entry in extract_stack()):
+            if IPython.__version__ > '0.10.2':
+                from IPython.utils import io
+                io.stdout = sys.stdout = sys.__stdout__
+            else:
+                from IPython.Shell import Term
+                Term.cout = sys.stdout = sys.__stdout__
+    except ImportError:
+        pass
     BdbQuit_excepthook.excepthook_ori = sys.excepthook
     sys.excepthook = BdbQuit_excepthook
     if frame is None:
